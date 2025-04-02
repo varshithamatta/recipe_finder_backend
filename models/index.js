@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 require("dotenv").config();
 
 const sequelize = new Sequelize(process.env.MYSQL_URL, {
-  dialect: config.dialect,
+  dialect: "mysql",
 });
 
 const db = {};
