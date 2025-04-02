@@ -4,7 +4,7 @@
     "password": "CnVXvfyzjddkSujyBHYteccxHTBMFUam",
     "database": "railway",
     "host": "switchback.proxy.rlwy.net",
-    "port":3306,
+    "port":37572,
     "dialect": "mysql",
     "dialectOptions": {
       "connectTimeout": 100000
@@ -15,7 +15,7 @@
     "password": "CnVXvfyzjddkSujyBHYteccxHTBMFUam",
     "database": "railway",
     "host": "switchback.proxy.rlwy.net",
-    "port":3306,
+    "port":37572,
     "dialect": "mysql",
     "dialectOptions": {
       "connectTimeout": 100000
@@ -26,7 +26,7 @@
     "password": "CnVXvfyzjddkSujyBHYteccxHTBMFUam",
     "database": "railway",
     "host": "switchback.proxy.rlwy.net",
-    "port":3306,
+    "port":37572,
     "dialect": "mysql",
     "dialectOptions": {
       "connectTimeout": 100000
