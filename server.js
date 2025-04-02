@@ -2,13 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db = require("./models"); // Import database models
-const sequelize = require("./models/index").sequelize; // Adjust path if necessary
+const { sequelize } = require("./models"); // Ensure correct Sequelize import
 const recipeRoutes = require("./routes/recipeRoutes");
-
-
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -85,10 +82,11 @@ app.get("/", (req, res) => {
 // Start Server
 app.listen(PORT, async () => {
   try {
-    await db.sequelize.authenticate();
-    console.log("Database connected successfully!");
+    await sequelize.sync(); // Ensures models are synced with DB
+    console.log("✅ Database connected and synced successfully!");
   } catch (error) {
-    console.error("Error connecting to database:", error);
+    console.error("❌ Error connecting to database:", error);
   }
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
+
