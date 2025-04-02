@@ -8,7 +8,7 @@ const recipeRoutes = require("./routes/recipeRoutes");
 
 
 const app = express();
-const PORT = 37572;
+const PORT = 5000;
 
 // Middleware
 app.use(cors());
