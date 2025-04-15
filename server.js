@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const { sequelize } = require("./models"); // Ensure correct Sequelize import
 const recipeRoutes = require("./routes/recipeRoutes");
 const app = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9001;
 const path = require('path');
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
