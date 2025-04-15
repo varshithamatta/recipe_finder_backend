@@ -80,8 +80,33 @@ router.get("/:id", getUserById);
  *       404:
  *         description: User not found
  */
-router.put("/:id", updateUser);
+router.put('/:id', upload.single('image'), async (req, res) => {
+  try {
+      const { id } = req.params;
+      const { name, email } = req.body;
 
+      const user = await User.findByPk(id);
+      if (!user) return res.status(404).json({ message: 'User not found' });
+
+      // Construct image URL if a file was uploaded
+      let imageUrl = user.image;
+      if (req.file) {
+          imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+      }
+
+      await user.update({
+          name,
+          email,
+          image: imageUrl,
+      });
+
+      res.json({ message: 'User updated successfully', user });
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Something went wrong', error: error.message });
+  }
+});
 /**
  * @swagger
  * /api/users/{id}:

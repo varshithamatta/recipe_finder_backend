@@ -34,22 +34,7 @@ const getUserById = async (req, res) => {
 };
 
 
-const updateUser = async (req, res) => {
-    const { email, profile_image } = req.body;
-  
-    try {
-      const user = await db.User.findByPk(req.params.id);
-      if (!user) return res.status(404).json({ error: "User not found" });
-  
-      user.email = email || user.email;
-      user.profile_image = profile_image || user.profile_image;
-      await user.save();
-  
-      res.json({ message: "User updated successfully" });
-    } catch (error) {
-      res.status(500).json({ error: "Update failed" });
-    }
-};
+
 
 const deleteUser = async (req, res) => {
     try {
@@ -82,4 +67,4 @@ const deleteUser = async (req, res) => {
   };
   
 
-module.exports = { getUsers, getUserById, updateUser, deleteUser, uploadUserProfile };
+module.exports = { getUsers, getUserById, deleteUser, uploadUserProfile };

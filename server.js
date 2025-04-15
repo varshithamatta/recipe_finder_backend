@@ -6,6 +6,9 @@ const { sequelize } = require("./models"); // Ensure correct Sequelize import
 const recipeRoutes = require("./routes/recipeRoutes");
 const app = express();
 const PORT = process.env.PORT || 9000;
+const path = require('path');
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware
 app.use(cors({
@@ -26,8 +29,6 @@ const likeRoutes = require("./routes/likeRoutes");
 const savedRecipeRoutes = require("./routes/savedRecipeRoutes");
 const followerRoutes = require("./routes/followerRoutes");
 const setupSwagger = require("./swagger");
-
-app.use("/uploads", express.static("uploads"));
 
 
 // Setup Swagger API Docs
