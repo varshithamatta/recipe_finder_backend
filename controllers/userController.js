@@ -63,7 +63,7 @@ const deleteUser = async (req, res) => {
     }
   };
 
-const uploadUserProfile = async (req, res) => {
+  const uploadUserProfile = async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
@@ -80,5 +80,6 @@ const uploadUserProfile = async (req, res) => {
       res.status(500).json({ message: "Server error", error });
     }
   };
+  
 
 module.exports = { getUsers, getUserById, updateUser, deleteUser, uploadUserProfile };

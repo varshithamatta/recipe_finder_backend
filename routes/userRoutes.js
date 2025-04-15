@@ -142,7 +142,7 @@ router.post("/upload", authenticateUser, upload.single("profile_image"), uploadU
 router.get("/profile", authenticateUser, async (req, res) => {
     try {
       const user = await db.User.findByPk(req.user.userId, {
-        attributes: ["id", "email", "profile_image"],
+        attributes: ["id","name", "email", "profile_image"],
       });
       if (!user) return res.status(404).json({ error: "User not found" });
   
