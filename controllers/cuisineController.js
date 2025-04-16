@@ -61,4 +61,22 @@ const deleteCuisine = async (req, res) => {
   }
 };
 
-module.exports = { getAllCuisines, getCuisineById, createCuisine, updateCuisine, deleteCuisine };
+// Get recipes by cuisine ID
+const getRecipesByCuisineId = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const cuisine = await db.Cuisine.findByPk(id);
+    if (!cuisine) return res.status(404).json({ message: "Cuisine not found" });
+
+    const recipes = await db.Recipe.findAll({
+      where: { cuisine_id: id },
+    });
+
+    res.json({ cuisine_name: cuisine.cuisine_name, recipes });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+module.exports = { getAllCuisines, getCuisineById, createCuisine, updateCuisine, deleteCuisine, getRecipesByCuisineId };

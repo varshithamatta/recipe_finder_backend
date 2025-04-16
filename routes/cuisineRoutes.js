@@ -7,6 +7,7 @@ const {
   createCuisine,
   updateCuisine,
   deleteCuisine,
+  getRecipesByCuisineId
 } = require("../controllers/cuisineController");
 
 /**
@@ -48,6 +49,8 @@ router.get("/", getAllCuisines);
  *         description: Cuisine not found
  */
 router.get("/:id", getCuisineById);
+
+router.get("/recipe/:id", getRecipesByCuisineId);
 
 /**
  * @swagger
