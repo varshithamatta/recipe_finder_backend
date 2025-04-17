@@ -67,9 +67,6 @@ app.use("/api/likes", likeRoutes);
 // Use Routes
 app.use("/api/cuisines", cuisineRoutes);
 
-app.use("/api/chefauth",chefAuth);
-
-
 // Use Routes
 app.use("/api/categories", categoryRoutes);
 
