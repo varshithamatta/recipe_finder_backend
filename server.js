@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
+
 const bodyParser = require("body-parser");
 const { sequelize } = require("./models"); // Ensure correct Sequelize import
 const recipeRoutes = require("./routes/recipeRoutes");
@@ -8,18 +8,29 @@ const app = express();
 const PORT = process.env.PORT || 9001;
 const path = require('path');
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const cors = require('cors');
 
-// Middleware
-app.use(cors());
+// Allow both local and Railway frontend
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://reactcrudcooknest-production.up.railway.app'
+];
 
 app.use(cors({
-  origin: 'http://localhost:5173', // allow your local dev environment
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 
+
 app.use(bodyParser.json());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const userAuth = require("./routes/userAuth");
 const chefAuth = require("./routes/chefAuth");
