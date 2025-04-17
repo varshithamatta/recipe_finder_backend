@@ -11,10 +11,7 @@ const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware
-app.use(cors({
-  origin: '*', // or specify allowed origins like ["http://localhost:3000"]
-}));
-
+app.use(cors());
 app.use(bodyParser.json());
 
 const userAuth = require("./routes/userAuth");
